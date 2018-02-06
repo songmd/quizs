@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>upload</title>
+</head>
+<body>
+<form action="" method="post" name="simple" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    {{ form.hidden_tag() }}
+    {{ form.photo.label }} {{ form.photo }}
+    {{ form.submit }}
+</form>
+</body>
+</html>

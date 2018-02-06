@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for("static", filename='quizs.css') }}">
+{#    <link rel="stylesheet" href="/ui/style/quizs.css">#}
+    <script src="{{ url_for("static", filename='zepto.min.css') }}"></script>
+</head>
+<body>
+    <div class="q_stem" data-answer="c">
+        {% for item in question.stem %}
+            {% if item.type == 'img' %}
+                <p class="q_stem_p">
+                    <img src="{{ item.content }}" alt="">
+                </p>
+            {% else %}
+                <p class="q_stem_p">{{ item.content }}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% for key in question.options %}
+        <div class="q_anser_opt" data-value="{{ key }}">
+            <span class="q_answer_m">{{ key }}</span>
+            <span class="q_answer_c">{{ question.options[key] }} </span>
+        </div>
+    {% endfor %}
+
+    <div class="q_analysis">
+        <h3 class="q_analysis_titile">回答错误</h3>
+        <p>
+            <span>正确答案是：</span>
+            <span>{{ question.answer|join }}</span>
+            <span>您的答案是：</span>
+            <span></span>
+        </p>
+        <p>【解析】</p>
+        <p> {{ question.analysis }} </p>
+    </div>
+
+    <div class="q_btn_next">下一题</div>s
+
+<script type="text/javascript">
+    $(function () {
+        var $opts = $('.q_anser_opt');
+        var rightAnswer = $('.q_stem').data('answer');
+        $opts.on('click',function () {
+            if( $(this).data('value') == rightAnswer )
+                console.log("right")
+            else
+                console.log('not right')
+        })
+    })
+</script>
+</body>
+</html>

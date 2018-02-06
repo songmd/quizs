@@ -1,0 +1,70 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/utils.html" as util %}
+
+{% block content %}
+    {{ util.flashed_messages(dismissible=True) }}
+    <div class="SignContainer">
+        <div class="SignContent">
+            <div class="SignTitle">
+                <h1 class="">庭阶少儿</h1>
+                <p class="">芝兰玉树，欲使其生于庭阶</p>
+            </div>
+            <form class="form form-horizontal form-group-sm" role="form" method="post">
+                {{ form.hidden_tag() }}
+                {{ wtf.form_errors(form, hiddens='only') }}
+                {{ wtf.form_field(form.user_name,form_type='horizontal') }}
+                {{ wtf.form_field(form.password,form_type='horizontal') }}
+                {{ wtf.form_field(form.confirm,form_type='horizontal') }}
+
+                <div class="form-group {% if form.captch.errors %} has-error{% endif -%}">
+                    <label for="captch" class="col-sm-2 control-label">验证码</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="captch" name="captch" placeholder=""
+                               aria-describedby="vcodeHelp">
+                        <span id="vcodeHelp" class="help-block">
+                            {% if form.captch.errors %}
+                                {{ form.captch.errors[0] }}
+                            {% else %}
+                                请填写图片中的字符，不区分大小写
+                            {% endif -%}
+                        </span>
+                    </div>
+                    <div class="col-sm-4">
+                        <img id='vcodeimg' class="CaptchImg">
+                        <a id="vimgHelp" href="javascript:void(0);">看不清楚，换张图片</a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-8">
+                        <button type="submit" class="btn btn-default form-control">注册</button>
+                    </div>
+                </div>
+            </form>
+{#                                    {{ wtf.quick_form(form, form_type='horizontal', button_map={'submit_button': 'primary'}) }}#}
+        </div>
+        <div class="SignFoot">
+            已有账号？<a>登录</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="../static/quizs.css">
+    {{ fixes.ie8() }}
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script type="text/javascript">
+        $(function () {
+            $('#vcodeimg').attr('src', "/generate?" + Math.random());
+            $('#vimgHelp, #vcodeimg').on('click', function () {
+                $('#vcodeimg').attr('src', "/generate?" + Math.random());
+            })
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>question</title>
+    <link rel="stylesheet" href="./style/weui.css">
+    <link rel="stylesheet" href="./style/quizs.css">
+    <script src="./zepto.min.js"></script>
+</head>
+<body>
+    <div class="q_stem" data-answer="A">
+        <p class="q_stem_p">
+            我会读准音
+        </p>
+        <p class="q_stem_p">
+            乌鸦看着（  ）瓶子里的水干着（  ）急。
+        </p>
+        <p class="q_stem_p">
+            <img src="./images/soldier_question.png" alt="">
+        </p>
+    </div>
+    <div class="q_anser_opt" data-value="A">
+        <div class="weui-btn weui-btn_primary">
+            <span class="q_answer_m">A</span>
+            <span class="q_answer_c">zhe; zhāo </span>
+        </div>
+    </div>
+
+    <div class="q_anser_opt q_anser_right" data-value="B">
+        <span class="q_answer_m">B</span>
+        <span class="q_answer_c ">zháo; zhe </span>
+        <!--<span class="q_mark_right"></span>-->
+    </div>
+
+    <div class="q_analysis">
+        <h3 class="q_analysis_titile">回答错误</h3>
+        <p>
+            <span>正确答案是：</span>
+            <span>A</span>
+            <span>您的答案是：</span>
+            <span>B</span>
+        </p>
+        <p>【解析】</p>
+        <p>本题考察读音。。。。。。。。。。。。。应该读。。。故选  </p>
+    </div>
+
+    <div class="q_btn_next">下一题</div>
+
+<script type="text/javascript">
+    $(function () {
+        var $opts = $('.q_anser_opt');
+        var rightAnswer = $('.q_stem').data('answer');
+        $opts.on('click',function () {
+            if( $(this).data('value') == rightAnswer )
+                console.log("right")
+            else
+                console.log('not right')
+        })
+    })
+</script>
+</body>
+</html>

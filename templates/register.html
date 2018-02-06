@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+    <link rel="stylesheet" href="../static/quizs.css">
+    <link rel="stylesheet" href="../static/weui.css">
+    <link rel="stylesheet" href="../static/bootstrap.css">
+    <script src="../static/jquery.js"></script>
+</head>
+<body>
+
+<div class="SignContainer">
+    <div class="SignContent">
+        <div class="SignTitle">
+            <h1 class="">庭阶少儿</h1>
+            <p class="">芝兰玉树，欲使其生于庭阶</p>
+        </div>
+
+        <form class="form-horizontal form-group-sm" method="post">
+            <div class="form-group">
+                <label for="inputUser" class="col-sm-2 control-label">用户名</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputUser" placeholder="" aria-describedby="userHelp">
+                    <span id="userHelp" class="help-block">6~18个字符，可使用字母、数字、下划线，需以字母开头</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword" class="col-sm-2 control-label">密码</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="inputPassword" placeholder=""
+                           aria-describedby="pwdHelp">
+                    <span id="pwdHelp" class="help-block">6~16个字符，区分大小写</span>
+                </div>
+            </div>
+            <div class="form-group ">
+                <label for="inputPassword2" class="col-sm-2 control-label">确认密码</label>
+                <div class="col-sm-6">
+                    <input type="password" class="form-control" id="inputPassword2" placeholder=""
+                           aria-describedby="cpwdHelp">
+                    <span id="cpwdHelp" class="help-block">请再次填写密码</span>
+                </div>
+            </div>
+
+            <div class="form-group has-error">
+                <label for="inputVecode" class="col-sm-2 control-label">验证码</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="inputVecode" placeholder=""
+                           aria-describedby="vcodeHelp">
+                    <span id="vcodeHelp" class="help-block">请填写图片中的字符，不区分大小写</span>
+                </div>
+                <div class="col-sm-4">
+                    <img id='vcodeimg' class="CaptchImg" src="/generate">
+                    <a id="vimgHelp" href="javascript:void(0);">看不清楚，换张图片</a>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <button type="submit" class="btn btn-default form-control">注册</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="SignFoot">
+        已有账号？<a>登录</a>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#vimgHelp, #vcodeimg').on('click', function () {
+        var src = "/generate?" + Math.random();
+        $('#vcodeimg').attr('src', src)
+    })
+
+</script>
+</body>
+</html>
